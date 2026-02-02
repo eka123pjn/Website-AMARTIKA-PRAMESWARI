@@ -1,0 +1,1669 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMARTIKA PRAMESWARI - Layanan Perizinan Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+    <style type="text/tailwindcss">
+      @layer base {
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Animasi untuk seluruh halaman */
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        @keyframes pulse-glow {
+          0%,
+          100% {
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+          }
+        }
+
+        @keyframes shimmer {
+          0% {
+            background-position: -200% center;
+          }
+          100% {
+            background-position: 200% center;
+          }
+        }
+
+        @keyframes textShine {
+          0% {
+            background-position: 0% 50%;
+          }
+          100% {
+            background-position: 100% 50%;
+          }
+        }
+
+        @keyframes borderFlow {
+          0% {
+            border-color: #3b82f6;
+          }
+          25% {
+            border-color: #8b5cf6;
+          }
+          50% {
+            border-color: #06b6d4;
+          }
+          75% {
+            border-color: #10b981;
+          }
+          100% {
+            border-color: #3b82f6;
+          }
+        }
+
+        body {
+          animation: fadeIn 1s ease-out;
+          overflow-x: hidden;
+        }
+      }
+
+      @layer components {
+        /* Animasi untuk tombol */
+        .btn-primary {
+          @apply bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out font-semibold;
+          animation: pulse-glow 2s infinite;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .btn-primary:hover {
+          transform: translateY(-3px) scale(1.05);
+          animation: none;
+          box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+          );
+          transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::after {
+          left: 100%;
+        }
+
+        .btn-secondary {
+          @apply bg-white text-blue-600 border border-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 ease-in-out font-semibold;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .btn-secondary:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .section-title {
+          @apply text-3xl md:text-4xl font-bold text-blue-800 mb-4;
+          position: relative;
+          display: inline-block;
+        }
+
+        .section-title::after {
+          content: "";
+          position: absolute;
+          bottom: -8px;
+          left: 0;
+          width: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+          border-radius: 2px;
+          transition: width 0.5s ease;
+        }
+
+        .section-title:hover::after {
+          width: 100%;
+        }
+
+        .section-subtitle {
+          @apply text-lg text-gray-600 mb-8 max-w-2xl mx-auto;
+          animation: slideUp 0.8s ease-out 0.2s both;
+        }
+
+        /* Animasi untuk kartu */
+        .card {
+          @apply bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-500 ease-out;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(59, 130, 246, 0.05),
+            transparent
+          );
+          transition: left 0.7s ease;
+        }
+
+        .card:hover::before {
+          left: 100%;
+        }
+
+        .card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animasi untuk navbar */
+        .nav-link {
+          @apply text-gray-700 hover:text-blue-600 transition-all duration-300 ease-out;
+          position: relative;
+          padding: 5px 0;
+        }
+
+        .nav-link::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+          border-radius: 2px;
+          transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+          width: 100%;
+        }
+
+        /* Animasi khusus untuk logo */
+        .logo-container {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .logo-float {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        /* Animasi untuk elemen angka statistik */
+        .counter {
+          font-size: 3rem;
+          font-weight: bold;
+          color: #3b82f6;
+          display: inline-block;
+        }
+
+        /* Animasi untuk garis waktu */
+        .timeline-item {
+          opacity: 0;
+          transform: translateX(50px);
+          transition: all 0.5s ease-out;
+        }
+
+        .timeline-item.visible {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        /* Animasi untuk form */
+        .form-input {
+          transition: all 0.3s ease;
+          border-width: 1px;
+        }
+
+        .form-input:focus {
+          transform: scale(1.02);
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+          animation: borderFlow 2s infinite;
+        }
+
+        /* Animasi untuk testimoni */
+        .testimonial-card {
+          transition: all 0.5s ease;
+        }
+
+        .testimonial-card:hover {
+          transform: translateY(-5px) scale(1.02);
+        }
+
+        /* Animasi untuk ikon layanan */
+        .service-icon {
+          transition: all 0.5s ease;
+        }
+
+        .service-icon:hover {
+          transform: rotate(10deg) scale(1.2);
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      /* Partikel untuk efek background */
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0.5;
+        z-index: 0;
+      }
+
+      /* Efek gradient text */
+      .gradient-text {
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textShine 3s ease infinite;
+      }
+
+      /* Efek shimmer untuk tombol */
+      .shimmer-btn {
+        background: linear-gradient(
+          90deg,
+          #3b82f6 0%,
+          #8b5cf6 25%,
+          #3b82f6 50%,
+          #8b5cf6 75%,
+          #3b82f6 100%
+        );
+        background-size: 200% auto;
+        animation: shimmer 2s linear infinite;
+      }
+
+      /* Animasi khusus untuk hero section */
+      .hero-title {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-title::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #ffffff, transparent);
+        transform: translateX(-100%);
+        animation: slideLine 3s ease-in-out infinite;
+      }
+
+      @keyframes slideLine {
+        0% {
+          transform: translateX(-100%);
+        }
+        50% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      /* Animasi untuk angka statistik */
+      @keyframes countUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Animasi untuk navbar saat scroll */
+      .nav-scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        animation: slideDown 0.5s ease-out;
+      }
+
+      /* Animasi untuk menu mobile */
+      .mobile-menu-open {
+        animation: slideInRight 0.3s ease-out;
+      }
+
+      /* Animasi untuk gambar */
+      .img-zoom {
+        transition: transform 0.5s ease;
+      }
+
+      .img-zoom:hover {
+        transform: scale(1.05);
+      }
+
+      /* Efek parallax */
+      .parallax-bg {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body class="font-sans text-gray-800">
+    <a
+      href="https://wa.me/6281287776847"
+      class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 ease-in-out z-50 animate-bounce"
+      target="_blank"
+      aria-label="WhatsApp"
+    >
+      <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <nav class="bg-white shadow-md py-4 sticky top-0 z-40">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <!-- Logo dengan animasi -->
+        <a
+          href="logo_ap.png"
+          class="flex items-center space-x-2 logo-container"
+        >
+          <div
+            class="bg-blue-600 text-white font-bold text-xl w-10 h-10 flex items-center justify-center rounded-full shadow-lg logo-float hover:rotate-180 transition-all duration-500"
+          >
+            AP
+          </div>
+          <span class="text-2xl font-bold text-blue-800 gradient-text"
+            >AMARTIKA PRAMESWARI</span
+          >
+        </a>
+
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-gray-600 hover:text-blue-600 focus:outline-none focus:text-blue-600"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-4 6h4"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">Tentang Kami</a></li>
+          <li><a href="#services" class="nav-link">Layanan</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#contact" class="nav-link">Kontak</a></li>
+        </ul>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="md:hidden hidden bg-white px-4 pt-2 pb-4 shadow-lg"
+      >
+        <ul class="flex flex-col space-y-2">
+          <li><a href="#home" class="block py-2 nav-link">Home</a></li>
+          <li><a href="#about" class="block py-2 nav-link">Tentang Kami</a></li>
+          <li><a href="#services" class="block py-2 nav-link">Layanan</a></li>
+          <li><a href="#faq" class="block py-2 nav-link">FAQ</a></li>
+          <li><a href="#contact" class="block py-2 nav-link">Kontak</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+                  <section id="home" class="relative overflow-hidden h-[600px] md:h-[700px]">
+              <div class="swiper myHeroSwiper h-full">
+                <div class="swiper-wrapper">
+                  
+                  <div class="swiper-slide relative flex items-center">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover" alt="Slide 1">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800/80 to-transparent"></div>
+                    <div class="container mx-auto px-6 relative z-10 text-white">
+                      <div class="max-w-2xl" data-aos="fade-right">
+                        <span class="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-sm font-semibold mb-4 inline-block border border-white/30">Layanan Profesional</span>
+                        <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Solusi Perizinan <span class="text-blue-300">Cepat & Legal</span></h1>
+                        <p class="text-lg mb-8 text-blue-50">AMARTIKA PRAMESWARI membantu pendirian PT & CV dengan proses transparan dan tim ahli di bidangnya.</p>
+                        <div class="flex gap-4">
+                          <a href="#contact" class="bg-white text-blue-800 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition">Hubungi Kami</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide relative flex items-center">
+                    <img src="https://images.unsplash.com/photo-1521791136364-798a7bc0d26e?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover" alt="Slide 2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800/80 to-transparent"></div>
+                    <div class="container mx-auto px-6 relative z-10 text-white">
+                      <div class="max-w-2xl">
+                        <span class="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-sm font-semibold mb-4 inline-block border border-white/30">Terpercaya & Aman</span>
+                        <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Wujudkan Bisnis <span class="text-blue-300">Impian Anda</span></h1>
+                        <p class="text-lg mb-8 text-blue-50">Kami memfasilitasi seluruh dokumen pendirian hingga izin operasional bisnis Anda selesai tepat waktu.</p>
+                        <div class="flex gap-4">
+                          <a href="#services" class="bg-blue-600 text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 border border-blue-500 transition shadow-lg">Layanan Kami</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            </section>
+
+      <section id="homepage-services" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="section-title" data-aos="fade-up">
+            Layanan Unggulan Kami
+          </h2>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Kami menawarkan berbagai solusi perizinan yang disesuaikan dengan
+            kebutuhan spesifik bisnis Anda.
+          </p>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+          >
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+              <i class="fas fa-building text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Izin Usaha & Pendirian PT/CV
+              </h3>
+              <p class="text-gray-600">
+                Bantuan lengkap untuk legalitas perusahaan Anda.
+              </p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+              <i class="fas fa-file-alt text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Perizinan OSS RBA
+              </h3>
+              <p class="text-gray-600">
+                Pendampingan penuh proses perizinan berbasis risiko.
+              </p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+              <i class="fas fa-hands-helping text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Konsultasi Hukum Bisnis
+              </h3>
+              <p class="text-gray-600">
+                Pakar hukum siap membantu masalah legalitas bisnis Anda.
+              </p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="500">
+              <i class="fas fa-chart-line text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Audit & Kepatuhan
+              </h3>
+              <p class="text-gray-600">
+                Memastikan bisnis Anda sesuai dengan regulasi terkini.
+              </p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="600">
+              <i class="fas fa-gavel text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Hak Kekayaan Intelektual
+              </h3>
+              <p class="text-gray-600">
+                Perlindungan merek dagang, paten, dan hak cipta.
+              </p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="700">
+              <i class="fas fa-award text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold text-blue-700 mb-2">
+                Sertifikasi & Standarisasi
+              </h3>
+              <p class="text-gray-600">
+                Bantuan dalam pengurusan sertifikat mutu dan standar.
+              </p>
+            </div>
+          </div>
+          <div class="mt-12" data-aos="fade-up" data-aos-delay="800">
+            <a href="#services" class="btn-primary">Lihat Semua Layanan</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 md:py-24 bg-blue-700 text-white">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="section-title text-white" data-aos="fade-up">
+            Mengapa Memilih AMARTIKA PRAMESWARI?
+          </h2>
+          <p
+            class="section-subtitle text-blue-100"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Kami berkomitmen memberikan layanan terbaik dengan nilai-nilai
+            profesionalisme.
+          </p>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+          >
+            <div
+              class="p-6 rounded-lg bg-blue-600 shadow-lg"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <i class="fas fa-check-circle text-white text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Proses Cepat & Efisien</h3>
+              <p class="text-blue-100">
+                Kami mengoptimalkan setiap langkah perizinan Anda.
+              </p>
+            </div>
+            <div
+              class="p-6 rounded-lg bg-blue-600 shadow-lg"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <i class="fas fa-user-tie text-white text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Tim Profesional</h3>
+              <p class="text-blue-100">
+                Didukung oleh ahli yang berpengalaman di bidangnya.
+              </p>
+            </div>
+            <div
+              class="p-6 rounded-lg bg-blue-600 shadow-lg"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <i class="fas fa-shield-alt text-white text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">
+                Transparansi & Akuntabilitas
+              </h3>
+              <p class="text-blue-100">
+                Setiap proses dan biaya disajikan secara jelas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="section-title" data-aos="fade-up">Angka Berbicara</h2>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Kepercayaan klien adalah bukti kualitas layanan kami.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div class="p-6" data-aos="zoom-in" data-aos-delay="200">
+              <div class="text-5xl font-bold text-blue-600 mb-2">500+</div>
+              <p class="text-xl font-semibold text-gray-700">Proyek Selesai</p>
+            </div>
+            <div class="p-6" data-aos="zoom-in" data-aos-delay="300">
+              <div class="text-5xl font-bold text-blue-600 mb-2">97%</div>
+              <p class="text-xl font-semibold text-gray-700">Kepuasan Klien</p>
+            </div>
+            <div class="p-6" data-aos="zoom-in" data-aos-delay="400">
+              <div class="text-5xl font-bold text-blue-600 mb-2">10+</div>
+              <p class="text-xl font-semibold text-gray-700">
+                Tahun Pengalaman
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="section-title" data-aos="fade-up">Apa Kata Klien Kami?</h2>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Testimoni dari klien yang puas dengan layanan AMARTIKA PRAMESWARI
+          </p>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+          >
+            <div
+              class="card bg-blue-50 border-l-4 border-blue-600"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <p class="text-gray-700 italic mb-4">
+                "AMARTIKA Prameswari sangat membantu dalam pengurusan izin usaha
+                kami. Prosesnya cepat, transparan, dan timnya sangat responsif!"
+              </p>
+              <p class="font-semibold text-blue-700">
+                - Budi Santoso, CEO PT Maju Jaya
+              </p>
+            </div>
+            <div
+              class="card bg-blue-50 border-l-4 border-blue-600"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <p class="text-gray-700 italic mb-4">
+                "Saya sangat merekomendasikan layanan AMARTIKA Prameswari.
+                Mereka ahli dalam perizinan OSS RBA, sangat profesional!"
+              </p>
+              <p class="font-semibold text-blue-700">
+                - Citra Dewi, Founder StartUp Inovasi
+              </p>
+            </div>
+            <div
+              class="card bg-blue-50 border-l-4 border-blue-600"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <p class="text-gray-700 italic mb-4">
+                "Pelayanan yang memuaskan dan harga yang kompetitif. Perizinan
+                perusahaan saya selesai lebih cepat dari perkiraan."
+              </p>
+              <p class="font-semibold text-blue-700">
+                - Agung Pratama, Direktur CV Mandiri
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-blue-800 text-white py-16 md:py-24">
+        <div
+          class="container mx-auto px-4 text-center"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+        >
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Siap Memulai Perjalanan Perizinan Anda?
+          </h2>
+          <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+            Jangan biarkan kerumitan perizinan menghambat pertumbuhan bisnis
+            Anda. Hubungi kami sekarang!
+          </p>
+          <a
+            href="#contact"
+            class="btn-secondary !bg-white text-blue-800 hover:!bg-gray-100 transform hover:scale-105"
+            >Konsultasi Gratis</a
+          >
+        </div>
+      </section>
+
+      <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="section-title" data-aos="fade-up">
+            Tentang AMARTIKA PRAMESWARI
+          </h2>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Cerita di balik komitmen kami terhadap keunggulan layanan perizinan.
+          </p>
+
+          <div class="flex flex-col md:flex-row items-center gap-8 mt-12">
+            <div
+              class="md:w-1/2 text-left"
+              data-aos="fade-right"
+              data-aos-delay="200"
+            >
+              <h3 class="text-2xl font-bold text-blue-700 mb-4">Visi Kami</h3>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                Menjadi mitra terpercaya bagi pelaku usaha di seluruh Indonesia
+                dalam mewujudkan legalitas dan kepatuhan pajak yang mudah, cepat
+                dan terjangkau.
+              </p>
+
+              <h3 class="text-2xl font-bold text-blue-700 mb-4">Misi Kami</h3>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                Menyediakan layanan pendirian bandan usaha dan pengurusan
+                legalitas lain dengan biaya paling kompetitif tanpa megurangi
+                kualitas.
+              </p>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                Memberikan solusi pajak yang praktis, akurat, dan sesuai
+                regulasi untuk mendukung kelancaran bisnis klien.
+              </p>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                Mengutamakan transparansi, kecepatan, dan kemudahan proses agar
+                pelaku usaha dapat focus pada pengembangan bisnisnya.
+              </p>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                Membangun hubungan jangka Panjang dengan klien melalui pelayanan
+                professional, ramah, responsive.
+              </p>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                Terus berinovasi dalam layanan berbasis teknologi agar
+                pengurusan legalitas dan pajak semakin efisien.
+              </p>
+            </div>
+            <div class="md:w-1/2" data-aos="fade-left" data-aos-delay="300">
+              <h2 class="section-title" data-aos="fade-up">LEGALITAS KAMI</h2>
+              <img
+                src="images/legalitas.png"
+                alt="Legalitas Kami"
+                class="rounded-lg shadow-xl w-full"
+              />
+              <h6 class="section-title" data-aos="fade-up">SK Kemenkumham</h6>
+              <h6 class="section-title" data-aos="fade-up">
+                AHU-0050613-AH.01.14 TAHUN 2025
+              </h6>
+            </div>
+          </div>
+
+          <div
+            class="mt-20 px-4 container mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="text-center mb-12">
+              <h3 class="text-3xl md:text-4xl font-bold text-blue-900 mb-3">
+                Gallery Kami
+              </h3>
+              <div class="w-24 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div
+                class="group bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transform transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div class="relative overflow-hidden cursor-pointer">
+                  <a
+                    href="images/g1.png"
+                    data-fancybox="gallery"
+                    data-caption="Tim Konsultasi Utama"
+                  >
+                    <img
+                      src="images/g1.png"
+                      alt="Gallery 1"
+                      class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-110"
+                    />
+                    <div
+                      class="absolute inset-0 bg-blue-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    >
+                      <div
+                        class="bg-white/20 p-3 rounded-full backdrop-blur-md"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-8 w-8 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                class="group bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transform transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div class="relative overflow-hidden cursor-pointer">
+                  <a
+                    href="images/g2.png"
+                    data-fancybox="gallery"
+                    data-caption="Diskusi Legalitas"
+                  >
+                    <img
+                      src="images/g2.png"
+                      alt="Gallery 2"
+                      class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-110"
+                    />
+                    <div
+                      class="absolute inset-0 bg-blue-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    >
+                      <div
+                        class="bg-white/20 p-3 rounded-full backdrop-blur-md"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-8 w-8 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                class="group bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transform transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div class="relative overflow-hidden cursor-pointer">
+                  <a
+                    href="images/g3.png"
+                    data-fancybox="gallery"
+                    data-caption="Sertifikasi Industri"
+                  >
+                    <img
+                      src="images/g3.png"
+                      alt="Gallery 3"
+                      class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-110"
+                    />
+                    <div
+                      class="absolute inset-0 bg-blue-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    >
+                      <div
+                        class="bg-white/20 p-3 rounded-full backdrop-blur-md"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-8 w-8 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                class="group bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transform transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div class="relative overflow-hidden cursor-pointer">
+                  <a
+                    href="images/g4.png"
+                    data-fancybox="gallery"
+                    data-caption="Meeting Klien"
+                  >
+                    <img
+                      src="images/g4.png"
+                      alt="Gallery 4"
+                      class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-110"
+                    />
+                    <div
+                      class="absolute inset-0 bg-blue-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    >
+                      <div
+                        class="bg-white/20 p-3 rounded-full backdrop-blur-md"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-8 w-8 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                class="group bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transform transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div class="relative overflow-hidden cursor-pointer">
+                  <a
+                    href="images/g5.png"
+                    data-fancybox="gallery"
+                    data-caption="Proses Perizinan"
+                  >
+                    <img
+                      src="images/g5.png"
+                      alt="Gallery 5"
+                      class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-110"
+                    />
+                    <div
+                      class="absolute inset-0 bg-blue-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    >
+                      <div
+                        class="bg-white/20 p-3 rounded-full backdrop-blur-md"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-8 w-8 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                class="group bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transform transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div class="relative overflow-hidden cursor-pointer">
+                  <a
+                    href="images/g6.png"
+                    data-fancybox="gallery"
+                    data-caption="Layanan Notaris"
+                  >
+                    <img
+                      src="images/g6.png"
+                      alt="Gallery 6"
+                      class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-110"
+                    />
+                    <div
+                      class="absolute inset-0 bg-blue-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    >
+                      <div
+                        class="bg-white/20 p-3 rounded-full backdrop-blur-md"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-8 w-8 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="section-title" data-aos="fade-up">
+            Daftar Layanan Lengkap
+          </h2>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Pilih layanan yang sesuai dengan kebutuhan legalitas dan pertumbuhan
+            bisnis Anda.
+          </p>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+          >
+            <div class="card text-left" data-aos="fade-up" data-aos-delay="200">
+              <i class="fas fa-handshake text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-2xl font-bold text-blue-700 mb-4">
+                Izin Usaha & Pendirian
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Memulai bisnis dengan legalitas yang kuat. Kami bantu proses
+                pendirian PT, CV, atau badan usaha lainnya.
+              </p>
+              <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                <li>Pendirian PT & CV</li>
+                <li>Pendaftaran Merek Dagang</li>
+                <li>NIB (Nomor Induk Berusaha)</li>
+              </ul>
+              <div class="text-2xl font-bold text-blue-800 mb-4">
+                Mulai dari Rp 3.500.000
+              </div>
+              <a href="#contact" class="btn-primary w-full text-center"
+                >Konsultasi Sekarang</a
+              >
+            </div>
+
+            <div class="card text-left" data-aos="fade-up" data-aos-delay="300">
+              <i class="fas fa-globe text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-2xl font-bold text-blue-700 mb-4">
+                Perizinan OSS RBA
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Kami memandu Anda melalui sistem Online Single Submission (OSS)
+                berbasis risiko.
+              </p>
+              <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                <li>Pengurusan Izin Dasar</li>
+                <li>Perizinan Berusaha</li>
+                <li>Perizinan Lokasi</li>
+              </ul>
+              <div class="text-2xl font-bold text-blue-800 mb-4">
+                Mulai dari Rp 2.000.000
+              </div>
+              <a href="#contact" class="btn-primary w-full text-center"
+                >Konsultasi Sekarang</a
+              >
+            </div>
+
+            <div class="card text-left" data-aos="fade-up" data-aos-delay="400">
+              <i class="fas fa-balance-scale text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-2xl font-bold text-blue-700 mb-4">
+                Konsultasi Hukum Bisnis
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Dapatkan saran hukum profesional untuk memastikan bisnis Anda
+                patuh.
+              </p>
+              <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                <li>Perjanjian Bisnis</li>
+                <li>Hukum Ketenagakerjaan</li>
+                <li>Sengketa Bisnis</li>
+              </ul>
+              <div class="text-2xl font-bold text-blue-800 mb-4">
+                Mulai dari Rp 1.500.000
+              </div>
+              <a href="#contact" class="btn-primary w-full text-center"
+                >Konsultasi Sekarang</a
+              >
+            </div>
+
+            <div class="card text-left" data-aos="fade-up" data-aos-delay="500">
+              <i class="fas fa-clipboard-check text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-2xl font-bold text-blue-700 mb-4">
+                Audit & Kepatuhan
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Pastikan bisnis Anda memenuhi semua regulasi dan standar yang
+                berlaku.
+              </p>
+              <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                <li>Audit Legalitas</li>
+                <li>Kepatuhan Lingkungan</li>
+                <li>SOP Perusahaan</li>
+              </ul>
+              <div class="text-2xl font-bold text-blue-800 mb-4">
+                Mulai dari Rp 4.000.000
+              </div>
+              <a href="#contact" class="btn-primary w-full text-center"
+                >Konsultasi Sekarang</a
+              >
+            </div>
+
+            <div class="card text-left" data-aos="fade-up" data-aos-delay="600">
+              <i class="fas fa-copyright text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-2xl font-bold text-blue-700 mb-4">
+                Hak Kekayaan Intelektual
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Lindungi aset kreatif dan inovasi bisnis Anda melalui
+                pendaftaran resmi.
+              </p>
+              <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                <li>Pendaftaran Merek</li>
+                <li>Hak Cipta & Paten</li>
+                <li>Desain Industri</li>
+              </ul>
+              <div class="text-2xl font-bold text-blue-800 mb-4">
+                Mulai dari Rp 2.500.000
+              </div>
+              <a href="#contact" class="btn-primary w-full text-center block"
+                >Konsultasi Sekarang</a
+              >
+            </div>
+
+            <div class="card text-left" data-aos="fade-up" data-aos-delay="700">
+              <i class="fas fa-certificate text-blue-600 text-4xl mb-4"></i>
+              <h3 class="text-2xl font-bold text-blue-700 mb-4">
+                Sertifikasi & Izin Khusus
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Membantu pengurusan izin operasional khusus dan sertifikasi
+                standar industri.
+              </p>
+              <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                <li>Sertifikat Halal</li>
+                <li>Izin Edar BPOM</li>
+                <li>Sertifikasi ISO</li>
+              </ul>
+              <div class="text-2xl font-bold text-blue-800 mb-4">
+                Hubungi Kami
+              </div>
+              <a href="#contact" class="btn-primary w-full text-center block"
+                >Konsultasi Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+          <h2 class="section-title text-center" data-aos="fade-up">
+            Tanya Jawab (FAQ)
+          </h2>
+          <div class="mt-12 space-y-4">
+            <div
+              class="border border-blue-100 rounded-lg overflow-hidden"
+              data-aos="fade-up"
+            >
+              <button
+                class="w-full flex justify-between items-center p-5 bg-blue-50 text-left font-semibold text-blue-800 focus:outline-none"
+                onclick="toggleFaq(1)"
+              >
+                <span>Berapa lama proses pembuatan PT?</span>
+                <i
+                  id="icon-1"
+                  class="fas fa-chevron-down transition-transform"
+                ></i>
+              </button>
+              <div
+                id="faq-1"
+                class="hidden p-5 text-gray-600 bg-white border-t border-blue-100"
+              >
+                Proses pembuatan PT biasanya memakan waktu 5-10 hari kerja
+                setelah semua dokumen persyaratan lengkap diterima.
+              </div>
+            </div>
+            <div
+              class="border border-blue-100 rounded-lg overflow-hidden"
+              data-aos="fade-up"
+            >
+              <button
+                class="w-full flex justify-between items-center p-5 bg-blue-50 text-left font-semibold text-blue-800 focus:outline-none"
+                onclick="toggleFaq(2)"
+              >
+                <span>Apakah biaya sudah termasuk pajak?</span>
+                <i
+                  id="icon-2"
+                  class="fas fa-chevron-down transition-transform"
+                ></i>
+              </button>
+              <div
+                id="faq-2"
+                class="hidden p-5 text-gray-600 bg-white border-t border-blue-100"
+              >
+                Harga yang tertera bersifat transparan. Untuk detail rincian
+                pajak akan dijelaskan pada saat penawaran resmi dikirimkan.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title text-center" data-aos="fade-up">
+            Hubungi Kami
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+            <div data-aos="fade-right">
+              <div class="mb-8">
+                <h3 class="text-2xl font-bold text-blue-800 mb-4">
+                  Informasi Kontak
+                </h3>
+                <div class="space-y-4">
+                  <p class="flex items-center text-gray-700">
+                    <i class="fas fa-map-marker-alt text-blue-600 w-8"></i> Jl.
+                    Bumi Citra Indah I, Pataruman, Cipatik, Kabupaten Bandung
+                    Barat, Jawa Barat
+                  </p>
+                  <p class="flex items-center text-gray-700">
+                    <i class="fas fa-phone text-blue-600 w-8"></i> +62
+                    81287776847
+                  </p>
+                  <p class="flex items-center text-gray-700">
+                    <i class="fas fa-envelope text-blue-600 w-8"></i>
+                    info@amartika.com
+                  </p>
+                </div>
+              </div>
+              <div class="h-64 rounded-lg overflow-hidden shadow-md">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63368.434767761326!2d107.4384016486328!3d-6.946968300000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ef00539f82fb%3A0x1db87edbe5416a7e!2sCV.%20AMARTIKA%20PRAMESWARI!5e0!3m2!1sid!2sid!4v1769489292526!5m2!1sid!2sid"
+                  width="100%"
+                  height="100%"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+            <form
+              id="whatsappForm"
+              class="bg-white p-8 rounded-lg shadow-lg"
+              data-aos="fade-left"
+            >
+              <div class="mb-4">
+                <label class="block text-gray-700 mb-2 font-semibold"
+                  >Nama Lengkap</label
+                >
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Masukkan nama Anda"
+                  required
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-600 outline-none"
+                />
+              </div>
+
+              <div class="mb-4">
+                <label class="block text-gray-700 mb-2 font-semibold"
+                  >Email</label
+                >
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="email@contoh.com"
+                  required
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-600 outline-none"
+                />
+              </div>
+
+              <div class="mb-4">
+                <label class="block text-gray-700 mb-2 font-semibold"
+                  >Pilih Layanan</label
+                >
+                <select
+                  id="service"
+                  required
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-600 outline-none bg-white"
+                >
+                  <option value="" disabled selected>
+                    Pilih jenis layanan...
+                  </option>
+                  <option value="Perizinan Berusaha (OSS)">
+                    Perizinan Berusaha (OSS)
+                  </option>
+                  <option value="Pendirian PT/CV">Pendirian PT/CV</option>
+                  <option value="Sertifikasi Halal">Sertifikasi Halal</option>
+                  <option value="Izin Edar BPOM">Izin Edar BPOM</option>
+                  <option value="Konsultasi Lainnya">Konsultasi Lainnya</option>
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label class="block text-gray-700 mb-2 font-semibold"
+                  >Pesan Tambahan</label
+                >
+                <textarea
+                  id="message"
+                  placeholder="Tuliskan detail kebutuhan Anda..."
+                  required
+                  class="w-full p-3 border rounded-lg h-32 focus:ring-2 focus:ring-blue-600 outline-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center"
+              >
+                <i class="fab fa-whatsapp mr-2 text-xl"></i> Kirim ke WhatsApp
+                Admin
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="bg-gradient-to-b from-blue-600 to-blue-800 text-white py-12 relative overflow-hidden"
+    >
+      <div class="absolute inset-0 opacity-20">
+        <div
+          class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-400 blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan-500 blur-3xl"
+        ></div>
+      </div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left"
+        >
+          <div data-aos="fade-up" data-aos-delay="100">
+            <div
+              class="flex items-center justify-center md:justify-start space-x-3 mb-6"
+            >
+              <div
+                class="bg-white text-blue-900 font-bold text-xl w-10 h-10 flex items-center justify-center rounded-full shadow-lg hover:rotate-180 transition-transform duration-500"
+              >
+                AP
+              </div>
+              <span class="text-2xl font-bold gradient-text"
+                >AMARTIKA Prameswari</span
+              >
+            </div>
+            <p class="text-blue-50 leading-relaxed">
+              Solusi perizinan profesional dan terpercaya untuk kemajuan bisnis
+              Anda di seluruh Indonesia. Kami berkomitmen memberikan layanan
+              terbaik dengan integritas dan profesionalisme.
+            </p>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="200">
+            <h4
+              class="text-xl font-bold mb-6 pb-2 border-b border-blue-400 inline-block"
+            >
+              Tautan Cepat
+            </h4>
+            <ul class="space-y-3 text-blue-50">
+              <li>
+                <a
+                  href="#home"
+                  class="hover:text-blue-200 transition-colors duration-300 flex items-center"
+                >
+                  <i class="fas fa-chevron-right text-xs mr-2 text-blue-300"></i
+                  >Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  class="hover:text-blue-200 transition-colors duration-300 flex items-center"
+                >
+                  <i class="fas fa-chevron-right text-xs mr-2 text-blue-300"></i
+                  >Tentang Kami
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="hover:text-blue-200 transition-colors duration-300 flex items-center"
+                >
+                  <i class="fas fa-chevron-right text-xs mr-2 text-blue-300"></i
+                  >Layanan
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  class="hover:text-white transition-colors duration-300 flex items-center"
+                >
+                  <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i
+                  >FAQ
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="hover:text-white transition-colors duration-300 flex items-center"
+                >
+                  <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i
+                  >Kontak
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="300">
+            <h4
+              class="text-xl font-bold mb-6 pb-2 border-b border-blue-400 inline-block"
+            >
+              Ikuti Kami
+            </h4>
+            <p class="text-blue-50 mb-6">
+              Tetap terhubung dengan kami melalui media sosial untuk informasi
+              terbaru.
+            </p>
+            <div class="flex justify-center md:justify-start space-x-6">
+              <a
+                href="#"
+                class="text-2xl hover:text-cyan-300 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="text-2xl hover:text-cyan-300 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="#"
+                class="text-2xl hover:text-cyan-300 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a
+                href="#"
+                class="text-2xl hover:text-cyan-300 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <i class="fab fa-tiktok"></i>
+              </a>
+              <a
+                href="#"
+                class="text-2xl hover:text-cyan-300 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+
+            <div class="mt-8">
+              <p class="text-blue-50 mb-3">Berlangganan newsletter kami</p>
+              <div class="flex">
+                <input
+                  type="email"
+                  placeholder="Email Anda"
+                  class="flex-grow p-3 rounded-l-lg text-gray-800 focus:outline-none"
+                />
+                <button
+                  class="bg-blue-500 hover:bg-blue-400 px-4 rounded-r-lg transition-colors duration-300"
+                >
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-blue-800 mt-12 pt-8 text-center text-blue-300"
+        >
+          <p>&copy; 2025 AMARTIKA Prameswari. All Rights Reserved.</p>
+          <p class="text-sm mt-2">
+            Dibuat dengan <i class="fas fa-heart text-red-400"></i> untuk
+            kemajuan bisnis Indonesia
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+
+      // Mobile Menu Toggle
+      const menuBtn = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // FAQ Accordion Toggle
+      function toggleFaq(id) {
+        const content = document.getElementById(`faq-${id}`);
+        const icon = document.getElementById(`icon-${id}`);
+        content.classList.toggle("hidden");
+        icon.classList.toggle("rotate-180");
+      }
+    </script>
+    <script>
+      document
+        .getElementById("whatsappForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // --- PENTING: Ganti nomor di bawah ini (awali dengan 62) ---
+          const adminNumber = "6281287776847";
+
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const service = document.getElementById("service").value;
+          const message = document.getElementById("message").value;
+
+          // Susun Format Pesan (Menggunakan Bold dengan tanda bintang)
+          const text =
+            "Halo Admin Amartika Prameswari,%0A%0A" +
+            "*Nama:* " +
+            name +
+            "%0A" +
+            "*Email:* " +
+            email +
+            "%0A" +
+            "*Layanan:* " +
+            service +
+            "%0A%0A" +
+            "*Pesan:*%0A" +
+            message;
+
+          // Buka URL WhatsApp
+          const whatsappUrl = `https://api.whatsapp.com/send?phone=${adminNumber}&text=${text}`;
+
+          window.open(whatsappUrl, "_blank");
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+      Fancybox.bind("[data-fancybox='gallery']", {
+        // Pengaturan tambahan bisa di sini
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  const swiper = new Swiper(".myHeroSwiper", {
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    effect: "fade", // Efek transisi halus (fade)
+    fadeEffect: {
+      crossFade: true
+    },
+  });
+</script>
+
+<style>
+  /* Kustomisasi warna dot pagination agar putih */
+  .swiper-pagination-bullet { background: white !important; opacity: 0.5; }
+  .swiper-pagination-bullet-active { background: white !important; opacity: 1; scale: 1.2; }
+</style>
+  </body>
+</html>
